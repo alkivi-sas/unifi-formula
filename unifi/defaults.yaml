@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+3cx:
+  pkg: 3cx
+  config: '/etc/3cx'
+  service:
+    name: 3cx
