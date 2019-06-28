@@ -1,8 +1,13 @@
-# -*- coding: utf-8 -*-
-# vim: ft=sls
+unifi-repo:
+  pkgrepo.managed:
+    - humanname: Ubiquity Unifi
+    - name: deb http://www.ui.com/downloads/unifi/debian stable ubiquiti
+    - file: /etc/apt/sources.list.d/unifi.list
+    - gpgcheck: 1
+    - key_url: https://dl.ui.com/unifi/unifi-repo.gpg
 
-{% from "3cx/map.jinja" import 3cx with context %}
-
-3cx-pkg:
+unifi-packages:
   pkg.installed:
-    - name: {{ 3cx.pkg }}
+    - name: unifi
+    - require:
+      - pkgrepo: unifi-repo

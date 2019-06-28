@@ -2,6 +2,6 @@
 # vim: ft=sls
 
 include:
-  - 3cx.install
-  - 3cx.config
-  - 3cx.service
+  - unifi.install
+  - unifi.config
+  - unifi.service

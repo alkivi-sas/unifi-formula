@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{% from "3cx/map.jinja" import 3cx with context %}
-
-3cx-name:
+unifi:
   service.running:
-    - name: {{ 3cx.service.name }}
+    - name: unifi
     - enable: True

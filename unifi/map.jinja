@@ -2,7 +2,7 @@
 # vim: ft=jinja
 
 {## Start with  defaults from defaults.sls ##}
-{% import_yaml '3cx/defaults.yaml' as default_settings %}
+{% import_yaml 'unifi/defaults.yaml' as default_settings %}
 
 {##
 Setup variable using grains['os_family'] based logic, only add key:values here
@@ -12,22 +12,22 @@ that differ from whats in defaults.yaml
         'Debian': {},
         'Suse': {},
         'Arch': {
-            "pkg" : '3cx-arch',
+            "pkg" : 'unifi-arch',
         },
         'RedHat': {
-            "config": '/etc/3cx.conf',
+            "config": '/etc/unifi.conf',
         },
   }
   , grain="os_family"
-  , merge=salt['pillar.get']('3cx:lookup'))
+  , merge=salt['pillar.get']('unifi:lookup'))
 %}
 {## Merge the flavor_map to the default settings ##}
-{% do default_settings.3cx.update(os_family_map) %}
+{% do default_settings.unifi.update(os_family_map) %}
 
-{## Merge in 3cx:lookup pillar ##}
-{% set 3cx = salt['pillar.get'](
-        '3cx',
-        default=default_settings.3cx,
+{## Merge in unifi:lookup pillar ##}
+{% set unifi = salt['pillar.get'](
+        'unifi',
+        default=default_settings.unifi,
         merge=True
     )
 %}
